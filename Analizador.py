@@ -86,11 +86,11 @@ def n_locales():
     locales["N4"] = num_locales[3]
     return locales
 
-"""
+
 print("LEEMOS TABLA DE DATOS:")
 print(lectura_datos_csv())
 print("\n Nº LOCALES POR LADO: N1, N2, N3 Y N4")
 print(n_locales())
 print("\n CLASIFICAMOS LOS DATOS:")
 print(clasificador())
-"""
+

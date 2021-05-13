@@ -19,8 +19,8 @@ def trazar_A():
         v4y = v3y = int(max_y) / max(int(locales["N1"]), int(locales["N3"]))
 
         trazo[lados_ext.index(["1", "2", "3"])] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-        print("\n RESULTADOS 1,2,3")
-        print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
+        # print("\n RESULTADOS 1,2,3")
+        # print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
 
     if ["2", "3", "4"] in clasificacion["A"]:
         v1x = v3x = max_x - (max_x / max(int(locales["N2"]), int(locales["N4"])))
@@ -28,8 +28,8 @@ def trazar_A():
         v1y = v2y = 0.0
         v3y = v4y = max_y
         trazo[lados_ext.index(["2", "3", "4"])] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-        print("\n RESULTADOS 2,3,4")
-        print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
+        # print("\n RESULTADOS 2,3,4")
+        # print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
 
     if ["3", "4", "1"] in clasificacion["A"]:
         v1x = v3x = 0.0
@@ -37,8 +37,8 @@ def trazar_A():
         v3y = v4y = max_y
         v2y = v1y = max_y - (max_y / max(int(locales["N1"]), int(locales["N3"])))
         trazo[lados_ext.index(["3", "4", "1"])] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-        print("\n RESULTADOS 3,4,1")
-        print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
+        # print("\n RESULTADOS 3,4,1")
+        # print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
 
     if ["4", "1", "2"] in clasificacion["A"]:
         v1x = v3x = 0.0
@@ -46,8 +46,8 @@ def trazar_A():
         v1y = v2y = 0.0
         v3y = v4y = max_y
         trazo[lados_ext.index(["4", "1", "2"])] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-        print("\n RESULTADOS 4,1,2")
-        print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
+        # print("\n RESULTADOS 4,1,2")
+        # print(v1x), print(v2x), print(v3x), print(v4x), print(v1y), print(v2y), print(v3y), print(v4y)
     return trazo
 
 
@@ -107,6 +107,5 @@ def trazar_B():
 
     if ["4"] in clasificacion["D"]:
 """
-
-print(trazar_A())
-print(trazar_B())
+# print("prueba")
+# print(trazar_B())

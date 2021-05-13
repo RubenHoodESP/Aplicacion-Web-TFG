@@ -87,10 +87,10 @@ def n_locales():
     return locales
 
 
-print("LEEMOS TABLA DE DATOS:")
-print(lectura_datos_csv())
-print("\n Nº LOCALES POR LADO: N1, N2, N3 Y N4")
-print(n_locales())
-print("\n CLASIFICAMOS LOS DATOS:")
-print(clasificador())
+# print("LEEMOS TABLA DE DATOS:")
+# print(lectura_datos_csv())
+# print("\n Nº LOCALES POR LADO: N1, N2, N3 Y N4")
+# print(n_locales())
+# print("\n CLASIFICAMOS LOS DATOS:")
+# print(clasificador())
 

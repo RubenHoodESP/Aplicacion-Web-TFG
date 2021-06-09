@@ -6,9 +6,6 @@ import Trazador
 
 def dibujar():
     diccionario = [Trazador.trazar_A(), Trazador.trazar_B(), Trazador.trazar_D()]
-    print("Diccionario:", diccionario)
-    print("Diccionario A:", diccionario[0])
-    print("Diccionario B:", diccionario[1])
 
     fig = plt.figure()
     ax = fig.add_subplot()

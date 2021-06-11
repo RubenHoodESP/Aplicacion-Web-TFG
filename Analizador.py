@@ -103,3 +103,26 @@ def consultaLocal(lados_exteriores):
             locales.append(dato[0])
 
     return locales
+
+
+# Devuelve los datos del local consultado
+def datosLocal(local):
+    tabla = lectura_datos_csv()
+    for item in tabla:
+        
+        if local in item[0]:
+            datos = item
+
+    return datos
+
+
+# Devuelve los datos de los locales de un lado
+# exterior concreto
+def datosLadoExterior_D(lado):
+    tabla = lectura_datos_csv()
+    datos = []
+    for item in tabla:
+        if lado in item[1] and len(item[1]) == 1:
+            datos.append(item)
+
+    return datos

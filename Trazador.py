@@ -106,8 +106,13 @@ def trazar_D():
     cont_1 = cont_2 = cont_3 = cont_4 = 0
 
     # Bucle que itera sobre cada fila de la tabla de datos
-    for dato in datos:    
+    for dato in datos:
+
+        # print("Iteramos dato: ", dato)    
+
         if dato[1] == ["1"]:
+
+            # print("Entramos en lado 1")
 
             # Guardo su número de local
             numero = int(dato[0])
@@ -132,19 +137,21 @@ def trazar_D():
             trazo[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
             cont_1 += 1
             
-            print("1_testeo_antes", trazados)
+            # print("1_testeo_antes", trazados)
             trazados[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-            print("1_testeo_despues", trazados)
+            # print("1_testeo_despues", trazados)
 
 
         if dato[1] == ["2"]:
+
+            # print("Entramos en lado 2")
 
             numero = int(dato[0])
             local = Analizador.consultaLocal(["2"])
             aux = local[cont_2]
             aux2 = int(aux) - 1
             coordenadas_anterior = trazados.get(aux2)
-            print("local anterior!!!!", aux2)
+            # print("local anterior!!!!", aux2)
 
             v1x = v3x = coordenadas_anterior[2]
 
@@ -158,12 +165,14 @@ def trazar_D():
             trazo[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
             cont_2 += 1
 
-            print("2_testeo_antes", trazados)
+            # print("2_testeo_antes", trazados)
             trazados[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-            print("2_testeo_despues", trazados)
+            # print("2_testeo_despues", trazados)
 
 
         if dato[1] == ["3"]:
+
+            # print("Entramos en lado 3")
 
             numero = int(dato[0])
 
@@ -178,7 +187,7 @@ def trazar_D():
 
             # handle
             v1x = v3x = max_x - (max_x / max(int(n_locales["N2"]), int(n_locales["N4"])))
-            print("AYYYLMAO", max(int(n_locales["N2"]), int(n_locales["N4"])))
+            # print("AYYYLMAO", max(int(n_locales["N2"]), int(n_locales["N4"])))
 
             v2y = v1y = coordenadas_anterior[5]
             v3y = v4y = v2y + max_y/int(n_locales["N3"])
@@ -187,12 +196,14 @@ def trazar_D():
             trazo[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
             cont_3 += 1
 
-            print("3_testeo_antes", trazados)
+            # print("3_testeo_antes", trazados)
             trazados[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-            print("3_testeo_despues", trazados)
+            # print("3_testeo_despues", trazados)
 
 
         if dato[1] == ["4"]:
+
+            # print("Entramos en lado 4")
 
             numero = int(dato[0])
             # Miro el local anterior
@@ -214,9 +225,9 @@ def trazar_D():
             trazo[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
             cont_4 += 1
 
-            print("4_testeo_antes", trazados)
+            # print("4_testeo_antes", trazados)
             trazados[numero] = [v1x, v1y, v2x, v2y, v3x, v3y, v4x, v4y]
-            print("4_testeo_despues", trazados)
+            # print("4_testeo_despues", trazados)
 
     return trazo
 
@@ -237,4 +248,4 @@ def trazos():
     
     return trazos
 
-print(trazar_D())
+trazar_D()

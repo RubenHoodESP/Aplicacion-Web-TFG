@@ -36,9 +36,10 @@ def dibujar():
                                     fill=True)
                 ax.add_patch(borde)
                 ax.add_patch(rect)
+        fig.savefig('my_plot_' + str(figure) + '.png')
         figure += 1
-    plt.show()
-    
+
+    plt.show()    
 
 
 dibujar()

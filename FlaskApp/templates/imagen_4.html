@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="header">
+    <h1>{% block title %} CABECERA {% endblock %}</h1>
+</header>
+<main class="contenido">
+    <!-- <div class="imagen">
+        <img src="{{url_for('static', filename='my_plot_0.png')}}" />
+    </div> -->
+    <h3>VARIANTE 4</h3>
+    <div class="imagen">
+        <img alt="" src="{{url_for('static', filename='my_plot_3.png')}}" />
+    </div>
+
+
+
+    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dictum mi nec laoreet. Fusce malesuada bibendum mauris a sagittis. Integer nec elit ut neque vehicula pretium. Nunc et erat quis felis dapibus fringilla. Etiam laoreet, ante a suscipit varius, lorem enim iaculis tellus, vel scelerisque magna risus mollis turpis. Sed sagittis mi dui, eu eleifend metus luctus quis. Praesent sit amet tortor eu ante faucibus volutpat. Aenean est velit, vehicula accumsan metus et, convallis pharetra ante. In ultrices quis ipsum sit amet ultrices. Sed et luctus eros. Fusce porttitor ornare eros et luctus. Pellentesque vel lacus sagittis dolor vulputate blandit. Suspendisse fermentum posuere ex id pretium. Mauris vel hendrerit quam, sed laoreet est.
+    Phasellus eu elit pharetra, congue dolor eu, tincidunt ipsum. Donec tristique eros eu erat aliquet, ut accumsan turpis interdum. Sed porta, sem non facilisis rutrum, ante neque dignissim nibh, ut gravida urna tellus ac lorem. Donec lacinia enim at facilisis ultricies. Nulla suscipit metus maximus lectus commodo molestie. Proin molestie odio erat, non vehicula tortor ultricies mollis. In sit amet tortor dapibus, convallis risus semper, dictum eros. Suspendisse potenti. Quisque molestie urna id felis rhoncus efficitur.
+    </p> -->
+    <!-- <div class="botones">
+        <button class="previous"> Previous </button>
+        <button class="next"> Next </button>
+    </div> -->
+</main>
+<div class="widget-1">
+    <a href="imagen_3"><button class="blue">ANTERIOR</button></a>
+</div>
+<div class="widget-2">
+    <a href="imagen_5"><button class="blue">SIGUIENTE</button></a>
+</div>
+<footer class="footer">
+    <h3>FOOTER</h3>
+</footer>
+{% endblock %}

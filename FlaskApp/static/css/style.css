@@ -18,7 +18,6 @@ body {
   .container .sidebar,
   .container .footer,
   .container .contenido {
-    background: #fff;
     padding: 20px;
     border-radius: 4px;
   }
@@ -28,10 +27,12 @@ body {
     color: #fff;
     grid-column-start: 1;
     grid-column-end: -1;
+    text-align: center;
   
   }
   
   .container .contenido {
+    background: #fff;
     grid-column: span 4;
   }
   
@@ -42,7 +43,6 @@ body {
     justify-content: center;
     grid-column-start: 2;
     grid-column-end: 3;
-  
   }
 
   .container .widget-2 {
@@ -52,10 +52,10 @@ body {
     justify-content: center;
     grid-column-start: 3;
     grid-column-end: 4;
-  
   }
   
   .container .footer {
+    text-align: center;
     background: #12203e;
     color: #fff;
     grid-column: span 4;

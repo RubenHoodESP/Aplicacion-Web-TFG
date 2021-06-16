@@ -126,3 +126,14 @@ def datosLadoExterior_D(lado):
             datos.append(item)
 
     return datos
+
+
+# Devuelve el número de locales exteriores totales
+def numeroLocales():
+    tabla = lectura_datos_csv()
+    cont = 0
+    for fila in tabla:
+        if '0' not in fila [1]:
+            cont += 1
+
+    return cont

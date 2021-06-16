@@ -178,10 +178,14 @@ def generador_D_4(trazo_D):
 
         return trazo
 
+
+# Variante 5: Estándar
 def generador_D_5(trazo_D):
 
     return trazo_D
 
+
+# Función que devuelve las coordenadas de todas las variantes de locales D
 def juntar_variantes():
     
     variantes = [generador_D_1(Trazador.trazar_D()), generador_D_2(Trazador.trazar_D()),
@@ -190,5 +194,16 @@ def juntar_variantes():
     return variantes
 
 
-print("generador D1: \n", generador_D_1(Trazador.trazar_D())[2])
-print("todas variantes: \n", juntar_variantes())
+# Función que devuelve todos los locales con sus coordenadas de variante estándar
+def juntar_locales():
+
+    coordenadas = {}
+
+    coordenadas_A = Trazador.trazar_A()
+    coordenadas_B = Trazador.trazar_B()
+    coordenadas_D = Trazador.trazar_D()
+
+    coordenadas = {**coordenadas_A, **coordenadas_B, **coordenadas_D}
+    coordenadas_ord = dict(sorted(coordenadas.items()))
+
+    return coordenadas_ord

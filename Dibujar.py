@@ -8,13 +8,10 @@ import Generador
 def dibujar():
 
     variantes = Generador.juntar_variantes()
-    print("aaaaayyy", variantes)
     diccionario = [Trazador.trazar_A(), Trazador.trazar_B(), Generador.generador_D_5(Trazador.trazar_D())]
     figure = 0
     for variante in variantes:
         diccionario[2] = variante
-
-        print("variante \n", variante)
 
         fig = plt.figure(figure)
         ax = fig.add_subplot()
@@ -36,10 +33,9 @@ def dibujar():
                                     fill=True)
                 ax.add_patch(borde)
                 ax.add_patch(rect)
-        fig.savefig('my_plot_' + str(figure) + '.png')
+        fig.savefig('imagenes/my_plot_' + str(figure) + '.png')
         figure += 1
 
     plt.show()    
-
 
 dibujar()

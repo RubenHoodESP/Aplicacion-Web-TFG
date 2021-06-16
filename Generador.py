@@ -1,3 +1,4 @@
+import Reparador
 from types import MappingProxyType
 import Analizador
 import Trazador
@@ -39,7 +40,8 @@ def generador_D_1(trazo_D):
     aux = Analizador.lectura_planta_csv()
     maximos = aux[0]
     max_x = int(maximos[0]) 
-    
+    reparado = Reparador.reparar_0(Trazador.juntar_locales())
+   
 
     # Compruebo si hay locales de camino mínimo
     if (len(comparador_envolturas()) > 0):
@@ -56,8 +58,10 @@ def generador_D_1(trazo_D):
 
             if datos_local[1] == '1':
 
-                trazo = trazo_D
-                trazado = trazo_D[int(datos_local[0])]
+                # trazo = trazo_D
+                # trazado = trazo_D[int(datos_local[0])]
+                trazo = reparado
+                trazado = reparado[int(datos_local[0])]
 
                 trazado[2] = trazado[6] = max_x / 2
                 trazo[int(datos_local[0])] = trazado
@@ -82,6 +86,7 @@ def generador_D_2(trazo_D):
     maximos = aux[0]
     max_x = int(maximos[0])
     n_locales = Analizador.n_locales()    
+    reparado = Reparador.reparar_0(Trazador.juntar_locales())
     
 
     # Compruebo si hay locales de camino mínimo
@@ -97,8 +102,10 @@ def generador_D_2(trazo_D):
 
             if (datos_local[1] == '1'):
 
-                trazo = trazo_D
-                trazado = trazo_D[int(datos_local[0])]
+                # trazo = trazo_D
+                # trazado = trazo_D[int(datos_local[0])]
+                trazo = reparado
+                trazado = reparado[int(datos_local[0])]
 
                 trazado[2] = trazado[6] = max_x - max_x / max(int(n_locales["N2"]), int(n_locales["N4"]))
                 trazo[int(datos_local[0])] = trazado
@@ -117,6 +124,8 @@ def generador_D_3(trazo_D):
     maximos = aux[0]
     max_y = int(maximos[1])
     n_locales = Analizador.n_locales()
+    reparado = Reparador.reparar_0(Trazador.juntar_locales())
+
     
     
     # Consigo los datos del lado exterior y de su opuesto
@@ -125,8 +134,10 @@ def generador_D_3(trazo_D):
     for datos_local in datos_lado_exterior:
         if datos_local[1] == '2':
 
-            trazo = trazo_D
-            trazado = trazo_D[int(datos_local[0])]
+            # trazo = trazo_D
+            # trazado = trazo_D[int(datos_local[0])]
+            trazo = reparado
+            trazado = reparado[int(datos_local[0])]
 
             trazado[5] = trazado[7] = max_y - max_y / max(int(n_locales["N1"]), int(n_locales["N3"]))
             trazo[int(datos_local[0])] = trazado
@@ -152,7 +163,8 @@ def generador_D_4(trazo_D):
     aux = Analizador.lectura_planta_csv()
     maximos = aux[0]
     max_x = int(maximos[0])
-    n_locales = Analizador.n_locales()    
+    n_locales = Analizador.n_locales()
+    reparado = Reparador.reparar_0(Trazador.juntar_locales())
     
 
     # Compruebo si hay locales de camino mínimo
@@ -170,8 +182,10 @@ def generador_D_4(trazo_D):
 
             if datos_local[1] == '3':
 
-                trazo = trazo_D
-                trazado = trazo_D[int(datos_local[0])]
+                # trazo = trazo_D
+                # trazado = trazo_D[int(datos_local[0])]
+                trazo = reparado
+                trazado = reparado[int(datos_local[0])]
 
                 trazado[0] = trazado[4] = max_x / max(int(n_locales["N2"]), int(n_locales["N4"]))
                 trazo[int(datos_local[0])] = trazado
@@ -182,28 +196,20 @@ def generador_D_4(trazo_D):
 # Variante 5: Estándar
 def generador_D_5(trazo_D):
 
-    return trazo_D
+    resultado = Reparador.reparar_0(Trazador.juntar_locales())
+
+    return resultado
+    # return trazo_D
 
 
 # Función que devuelve las coordenadas de todas las variantes de locales D
 def juntar_variantes():
     
     variantes = [generador_D_1(Trazador.trazar_D()), generador_D_2(Trazador.trazar_D()),
-    generador_D_3(Trazador.trazar_D()), generador_D_4(Trazador.trazar_D()), generador_D_5(Trazador.trazar_D())]
+                generador_D_3(Trazador.trazar_D()), generador_D_4(Trazador.trazar_D()),
+                generador_D_5(Trazador.trazar_D())]
 
     return variantes
 
 
-# Función que devuelve todos los locales con sus coordenadas de variante estándar
-def juntar_locales():
-
-    coordenadas = {}
-
-    coordenadas_A = Trazador.trazar_A()
-    coordenadas_B = Trazador.trazar_B()
-    coordenadas_D = Trazador.trazar_D()
-
-    coordenadas = {**coordenadas_A, **coordenadas_B, **coordenadas_D}
-    coordenadas_ord = dict(sorted(coordenadas.items()))
-
-    return coordenadas_ord
+print(generador_D_1(Trazador.trazar_D()))

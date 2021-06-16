@@ -110,8 +110,6 @@ def trazar_D():
 
         if dato[1] == ["1"]:
 
-            # print("Entramos en lado 1")
-
             # Guardo su número de local
             numero = int(dato[0])
 
@@ -161,7 +159,6 @@ def trazar_D():
 
 
         if dato[1] == ["3"]:
-
 
             numero = int(dato[0])
 
@@ -228,3 +225,18 @@ def trazos():
     trazos = trazo_A | trazo_B
     
     return trazos
+
+
+# Función que devuelve todos los locales con sus coordenadas de variante estándar
+def juntar_locales():
+
+    coordenadas = {}
+
+    coordenadas_A = trazar_A()
+    coordenadas_B = trazar_B()
+    coordenadas_D = trazar_D()
+
+    coordenadas = {**coordenadas_A, **coordenadas_B, **coordenadas_D}
+    coordenadas_ord = dict(sorted(coordenadas.items()))
+
+    return coordenadas_ord

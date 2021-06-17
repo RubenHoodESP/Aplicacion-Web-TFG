@@ -209,12 +209,31 @@ def trazar_D():
     return trazo
 
 
-# Función que devuelve los trazos de los locales E
-def trazar_E():
+# Función que devuelve un diccionario con la envoltura correcta para locales E
+def tratar_envoltura_E():
+    datos_locales_interiores = Analizador.datosLocalesInteriores()
+    envolturas = {}
 
-    trazo = {}
+    for datos_local in datos_locales_interiores:
+        envoltura_sin = datos_local[2].split("-")
+        datos_local.remove(datos_local[2])
+        datos_local.insert(2, envoltura_sin)    
+        envolturas[datos_local[0]] = datos_local[2]
 
-    return trazo
+    for envoltura in envolturas.items():
+
+        local = envoltura[0]
+        items = envoltura[1]
+        for item in items:
+
+            if local < item:
+                items.remove(item)
+
+            if ((Analizador.getTipoLocal(item) == 'A') or
+            (Analizador.getTipoLocal(item) == 'B')):
+                items.remove(item)
+
+    return envolturas
 
 
 # Función que devuelve los trazos de locales A y B

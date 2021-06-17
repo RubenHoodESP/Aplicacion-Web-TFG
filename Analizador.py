@@ -137,3 +137,34 @@ def numeroLocales():
             cont += 1
 
     return cont
+
+
+# Devuelve una lista con los datos de los locales interiores
+def datosLocalesInteriores():
+    tabla = lectura_datos_csv()
+    datos = []
+    for fila in tabla:
+        if (len(fila[1]) == 1) and ('0' in fila[1]):
+            datos.append(fila)
+
+    return datos
+
+
+# Función que devuelve el tipo de local
+def getTipoLocal(local):
+    datos = datosLocal(local)
+    envoltura = datos[1]
+    if len(envoltura) == 5:
+        return "A"
+    
+    elif len(envoltura) == 3:
+        return "B"
+
+    elif ((len(envoltura) == 1) and ('0' not in envoltura)):
+        return "D"
+
+    elif ((len(envoltura) == 1) and ('0' in envoltura)):
+        return "E"
+
+# print(datosLocalesInteriores())
+# print(datosLocal('1'))

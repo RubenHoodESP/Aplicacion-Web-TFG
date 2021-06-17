@@ -8,7 +8,6 @@ def reparar_0(trazados):
 
     numero_locales = Analizador.numeroLocales()
 
-    print("TODOS: ", trazados)
     resultado = {}
     for trazado in trazados.items():
         datos_local = Analizador.datosLocal(str(trazado[0]))
@@ -17,8 +16,6 @@ def reparar_0(trazados):
             lado = lados
 
             if lado == "1":
-
-                print("ENTRO IF LADO 1")
 
                 local_1 = trazado[0]
                 coordenadas_1 = trazado[1]
@@ -35,16 +32,11 @@ def reparar_0(trazados):
                     coordenadas_1[3] = coordenadas_siguiente_1[7]
 
                     resultado[local_1] = coordenadas_1
-                    print("editado: ", resultado)
                 
                 else:
                     resultado[local_1] = coordenadas_1
-                    print("normal: ", resultado)
-
 
             if lado == "2":
-
-                print("ENTRO LADO 2")
 
                 local_2 = trazado[0]
                 coordenadas_2 = trazado[1]
@@ -57,8 +49,6 @@ def reparar_0(trazados):
                 if ((coordenadas_2[2] != coordenadas_siguiente_2[0]) and
                 (coordenadas_2[6] != coordenadas_siguiente_2[4])):
 
-                    print("ENTRO IF LADO 2")
-
                     coordenadas_2[2] = coordenadas_siguiente_2[0]
                     coordenadas_2[6] = coordenadas_siguiente_2[4]
 
@@ -68,8 +58,6 @@ def reparar_0(trazados):
                     resultado[local_2] = coordenadas_2
 
             if lado == "3":
-
-                print("ENTRO LADO 3")
 
                 local_3 = trazado[0]
                 coordenadas_3 = trazado[1]
@@ -82,8 +70,6 @@ def reparar_0(trazados):
                 if ((coordenadas_3[5] != coordenadas_siguiente_3[1]) and
                 (coordenadas_3[7] != coordenadas_siguiente_3[3])):
 
-                    print("ENTRO IF LADO 3")
-
                     coordenadas_3[5] = coordenadas_siguiente_3[1]
                     coordenadas_3[7] = coordenadas_siguiente_3[3]
 
@@ -93,8 +79,6 @@ def reparar_0(trazados):
                     resultado[local_3] = coordenadas_3
 
             if lado == "4":
-
-                print("ENTRO LADO 4")
 
                 local_4 = trazado[0]
                 coordenadas_4 = trazado[1]
@@ -106,8 +90,6 @@ def reparar_0(trazados):
                 # Comprobar local siguiente
                 if ((coordenadas_4[0] != coordenadas_siguiente_4[2]) and
                 (coordenadas_4[4] != coordenadas_siguiente_4[6])):
-
-                    print("ENTRO IF LADO 4")
 
                     coordenadas_4[0] = coordenadas_siguiente_4[2]
                     coordenadas_4[4] = coordenadas_siguiente_4[6]
@@ -121,35 +103,4 @@ def reparar_0(trazados):
 
     return resultado
 
-print(reparar_0(Trazador.juntar_locales()))
-
-
-
-""" def reparar_1(variantes):
-
-    for variante in variantes:
-
-        print("variante", variante)
-
-        for local in variante.items():
-
-            print("local: ", local)
-            datos_local = Analizador.datosLocal(str(local[0]))
-            print("datos_local: ", datos_local)
-            lado_local = datos_local[1]
-            print("lado_local: ", lado_local)
-
-            if lado_local == 1:
-
-
-            if lado_local == 2:
-
-            if lado_local == 3:
-
-            if lado_local == 4:
-
-
-        
-    return variantes
-
-print(reparar_0(Generador.juntar_variantes())) """
+# print(reparar_0(Trazador.juntar_locales()))

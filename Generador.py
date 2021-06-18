@@ -1,3 +1,4 @@
+from numpy import result_type
 import Reparador
 from types import MappingProxyType
 import Analizador
@@ -32,7 +33,7 @@ def comparador_envolturas():
 
 
 # Variante 1: lados 1 y 3 al medio
-def generador_D_1(trazo_D):
+def generador_D_1():
     
     # Variables comunes
     comparador = comparador_envolturas()
@@ -67,7 +68,7 @@ def generador_D_1(trazo_D):
 
                 for datos_local_op in datos_lado_exterior_op:
 
-                    trazado_1_op = trazo_D[int(datos_local_op[0])]
+                    trazado_1_op = reparado[int(datos_local_op[0])]
                     trazado_1_op[0] = trazado_1_op[4] = max_x / 2
                     trazo[int(datos_local_op[0])] = trazado_1_op
 
@@ -76,7 +77,7 @@ def generador_D_1(trazo_D):
 
 
 # Variante 2: lado 1 full
-def generador_D_2(trazo_D):
+def generador_D_2():
     
     # Variables comunes
     comparador = comparador_envolturas()
@@ -113,7 +114,7 @@ def generador_D_2(trazo_D):
 
 
 # Variante 3: lado 2 full
-def generador_D_3(trazo_D):
+def generador_D_3():
     
     # Variables comunes
     locales = Analizador.consultaLocal(["2"])
@@ -140,8 +141,8 @@ def generador_D_3(trazo_D):
 
         elif datos_local[1] == '4':
 
-            trazo = trazo_D
-            trazado = trazo_D[int(datos_local[0])]
+            trazo = reparado
+            trazado = reparado[int(datos_local[0])]
 
             trazado[1] = trazado[3] = max_y / max(int(n_locales["N1"]), int(n_locales["N3"]))
             trazo[int(datos_local[0])] = trazado
@@ -151,7 +152,7 @@ def generador_D_3(trazo_D):
 
 
 # Variante 4: lado 3 full
-def generador_D_4(trazo_D):
+def generador_D_4():
     
     # Variables comunes
     comparador = comparador_envolturas()
@@ -189,7 +190,7 @@ def generador_D_4(trazo_D):
 
 
 # Variante 5: Estándar
-def generador_D_5(trazo_D):
+def generador_D_5():
 
     resultado = Reparador.reparar_0(Trazador.juntar_locales())
 
@@ -200,190 +201,164 @@ def generador_D_5(trazo_D):
 # Función que devuelve las coordenadas de todas las variantes de locales D
 def juntar_variantes():
     
-    variantes = [generador_D_1(Trazador.trazar_D()), generador_D_2(Trazador.trazar_D()),
-                generador_D_3(Trazador.trazar_D()), generador_D_4(Trazador.trazar_D()),
-                generador_D_5(Trazador.trazar_D())]
+    variantes = [generador_D_1(), generador_D_2(), generador_D_3(), generador_D_4(),
+                generador_D_5()]
 
     return variantes
 
-
+        
+     
 # Le paso el local adyacente al que le meto el local interior,
 # el local nuevo y la variante
+def generador_E_1(local, envoltura, variante):
 
-def generador_E_1(parametro):
-
-    local = parametro[0]
-    envoltura = parametro[1]
-    variante = parametro[2]
-
-    print("VALORES DE PARAMETRO:", local, envoltura, variante)
+    print("envoltura", envoltura)
 
     trazos_finales = variante
     trazado_nuevo = [0,0,0,0,0,0,0,0]
     trazado_adyacente = variante[int(local)]
     resultado = {}
 
-    print("trazado_adyacente del local: ", local, trazado_adyacente)
-
-    # Comprobamos en qué lado está el local adyacente
     datos = Analizador.datosLocal(local)
     lado = datos[1]
 
     if lado == '1':
-
-        print("El local", local, "está en el lado 1")
-        # Metemos el trazado del local interior nuevo desde la mitad
-        # del trazado adyacente al final
 
         trazado_nuevo[2] = trazado_nuevo[6] = trazado_adyacente[2]
         trazado_nuevo[1] = trazado_nuevo[3] = trazado_adyacente[1]
         trazado_nuevo[5] = trazado_nuevo[7] = trazado_adyacente[5]
         trazado_nuevo[0] = trazado_nuevo[4] = trazado_adyacente[2] / 2
         
-        # Modificamos el trazado del local adyacente para que
-        # quepa el local interior nuevo (mitad)
         trazado_adyacente[2] = trazado_adyacente[6] =  trazado_nuevo[0]
 
         resultado[int(envoltura)] = trazado_nuevo
         resultado[int(local)] = trazado_adyacente
 
-        print("Resultado de trazos_finales", resultado)
-        return resultado
+        trazos_finales.update(resultado)
+
+        return trazos_finales
 
     elif lado == '2':
-
-        print("El local", local, "está en el lado 2")
-        # Metemos el trazado del local interior nuevo desde la mitad
-        # del trazado adyacente al final
         
         trazado_nuevo[0] = trazado_nuevo[4] = trazado_adyacente[0]
         trazado_nuevo[2] = trazado_nuevo[6] = trazado_adyacente[2]
         trazado_nuevo[5] = trazado_nuevo[7] = trazado_adyacente[5]
         trazado_nuevo[1] = trazado_nuevo[3] = trazado_adyacente[5] / 2
-        
-        # Modificamos el trazado del local adyacente para que
-        # quepa el local interior nuevo (mitad)
+
         trazado_adyacente[5] = trazado_adyacente[7] =  trazado_nuevo[1]
 
         resultado[int(envoltura)] = trazado_nuevo
         resultado[int(local)] = trazado_adyacente
 
-        print("Resultado de trazos_finales", resultado)
-        return resultado
+        trazos_finales.update(resultado)
+
+        return trazos_finales
 
 
     elif lado == '3':
 
-        print("El local", local, "está en el lado 3")
-        # Metemos el trazado del local interior nuevo desde la mitad
-        # del trazado adyacente al final
         trazado_nuevo[5] = trazado_nuevo[7] = trazado_adyacente[5]
         trazado_nuevo[0] = trazado_nuevo[4] = trazado_adyacente[0]
         trazado_nuevo[2] = trazado_nuevo[6] = trazado_adyacente[0] + ((trazado_adyacente[2] -
                                                         trazado_adyacente[0]) / 2)
         trazado_nuevo[1] = trazado_nuevo[3] = trazado_adyacente[1]
-
-        # Modificamos el trazado del local adyacente para que
-        # quepa el local interior nuevo (mitad)
         trazado_adyacente[0] = trazado_adyacente[4] = trazado_adyacente[0] + ((trazado_adyacente[2] -
                                                         trazado_adyacente[0]) / 2)
 
         resultado[int(envoltura)] = trazado_nuevo
         resultado[int(local)] = trazado_adyacente
 
-        print("Resultado de trazos_finales", resultado)
-        return resultado
+        trazos_finales.update(resultado)
+
+        return trazos_finales
 
     elif lado == '4':
 
-        print("El local", local, "está en el lado 4")
-        # Metemos el trazado del local interior nuevo desde la mitad
-        # del trazado adyacente al final
         trazado_nuevo[5] = trazado_nuevo[7] = trazado_adyacente[1] + ((trazado_adyacente[5] -
                                                         trazado_adyacente[1]) / 2)
         trazado_nuevo[1] = trazado_nuevo[3] = trazado_adyacente[1]
         trazado_nuevo[2] = trazado_nuevo[6] = trazado_adyacente[2]
         trazado_nuevo[0] = trazado_nuevo[4] = trazado_adyacente[0]
-
-        # Modificamos el trazado del local adyacente para que
-        # quepa el local interior nuevo (mitad)
         trazado_adyacente[1] = trazado_adyacente[3] =  trazado_adyacente[1] + ((trazado_adyacente[5] -
                                                         trazado_adyacente[1]) / 2)
 
         resultado[int(envoltura)] = trazado_nuevo
         resultado[int(local)] = trazado_adyacente
 
-        print("Resultado de trazos_finales", resultado)
-        return resultado
+        trazos_finales.update(resultado)
+
+        return trazos_finales
     
-    # Devolvemos el nuevo trazado E y trazado de envoltura
-    # modificado
-    
+    else: 
+        anchura_adyacente = trazado_adyacente[2] - trazado_adyacente[0]
+        altura_adyacente = trazado_adyacente[5] - trazado_adyacente[1]
 
-""" def juntar_variantes_E():
-    variantes = juntar_variantes()
-    envolturas = Trazador.tratar_envoltura_E()
-    todos = []
+        if anchura_adyacente >= altura_adyacente:
 
-    for envoltura in envolturas.items():
-        print("Añado local: ", envoltura[0])
-        
-        for local in envoltura[1]:
-            i = 0
-            print("Estoy en local adyacente: ", local)
+            trazado_nuevo[1] = trazado_nuevo[3] = trazado_adyacente[1]
+            trazado_nuevo[5] = trazado_nuevo[7] = trazado_adyacente[5]
+            trazado_nuevo[2] = trazado_nuevo[6] = trazado_adyacente[2]
+            trazado_nuevo[0] = trazado_nuevo[4] = trazado_adyacente[0] + ((trazado_adyacente[2] -
+                                                        trazado_adyacente[0]) / 2)
+            trazado_adyacente[2] = trazado_adyacente[6] = trazado_nuevo[0]
 
-            for variante in variantes:
-                i += 1
-                print("Todas las variantes", variantes)
-                print("Estoy en la variante: ", i)
-                print("Esta es la variante ->", variante)
+            resultado[int(envoltura)] = trazado_nuevo
+            resultado[int(local)] = trazado_adyacente
 
-                trazado = generador_E_1(local, envoltura[0], variante)
-                z = trazado | variante
-                print("Trazado resultado:", z)
-                todos.append(z)
+            trazos_finales.update(resultado)
 
-    return todos """
+            return trazos_finales
+
+        if altura_adyacente >= anchura_adyacente:
+
+            return trazos_finales
 
 
-# Recorro cada local interior y su envoltura para luego
-# juntar todos los posibles parámetros y llamar a la función
-# generadora de E
 def juntar_variantes_E(envoltura, variantes):
 
     todos = []
-    parametros = []
+    resultado_final = []
+    local = envoltura[0]
+    for local_env in envoltura[1]:
+        print(local_env)
+        i = 0
+        print("longitud", len(juntar_variantes()))
+        while i < len(juntar_variantes()):
 
-    for local in envoltura[1]:
-            # print("Estoy en local adyacente: ", local)
-            n_variante = 0
+            print("iteracion", i)
 
-            while n_variante < len(variantes):
+            # variantes_aux = variantes
+            # variante = variantes_aux[i]
+            
+            variantes = juntar_variantes()
 
-                variante = variantes[n_variante]
-
-                # print("Estoy en la variante: ", n_variante + 1)
-                # print("Esta es la variante ->", variante)
-                parametros.append([envoltura[0], local, variante])
-                n_variante += 1
-
-    for parametro in parametros:
-
-        trazado = generador_E_1(parametro)
-        z = trazado | variante
-        # print("Trazado resultado:", z)
-
-    return z
+            variante = variantes[i]
+            trazado = generador_E_1(local_env, local, variante)
+            i += 1
+            todos.append(trazado)
+    
+    return todos
 
 
 def ejecutar_E():
 
-    variantes = juntar_variantes()
     envolturas = Trazador.tratar_envoltura_E()
+    variantes = juntar_variantes()
 
-    for envoltura in envolturas.items():
-        print("envoltura", envoltura)
-        result = juntar_variantes_E(envoltura, variantes)
+    result = []
+    print("----- TODAS LAS ENVOLTURAS -----\n", envolturas)
+
+    print("envoltura", envolturas.items())
+    # print("envoltura", envoltura)
+
+    envoltura = list(envolturas.items())[0]
+    # for envoltura in envolturas.items():
+    print("envoltura", envoltura)
+    result = juntar_variantes_E(envoltura, variantes)
+    """ variantes_2 = result
+
+    envoltura_2 = list(envolturas.items())[1]
+    result_2 = juntar_variantes_E(envoltura_2, variantes_2) """
 
     return result
 

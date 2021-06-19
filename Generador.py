@@ -3,6 +3,7 @@ import Reparador
 from types import MappingProxyType
 import Analizador
 import Trazador
+import Variantes
 
 def comparador_envolturas():
     
@@ -314,7 +315,7 @@ def generador_E_1(local, envoltura, variante):
             return trazos_finales
 
 
-def juntar_variantes_E(envoltura, variantes):
+def juntar_variantes_E(envoltura):
 
     todos = []
     resultado_final = []
@@ -331,7 +332,6 @@ def juntar_variantes_E(envoltura, variantes):
             # variante = variantes_aux[i]
             
             variantes = juntar_variantes()
-
             variante = variantes[i]
             trazado = generador_E_1(local_env, local, variante)
             i += 1
@@ -341,27 +341,58 @@ def juntar_variantes_E(envoltura, variantes):
 
 
 def ejecutar_E():
-
     envolturas = Trazador.tratar_envoltura_E()
-    variantes = juntar_variantes()
-
     result = []
-    print("----- TODAS LAS ENVOLTURAS -----\n", envolturas)
+    envoltura = list(envolturas.items())[0]
+    # for envoltura in envolturas.items():
+    # print("envoltura", envoltura)
+    result = juntar_variantes_E(envoltura)
+  
+    return result
+
+
+def ejecutar_E_2():
+    envolturas = Trazador.tratar_envoltura_E()
+
+    print("----- TODAS LAS ENVOLTURAS_2 -----\n", envolturas)
 
     print("envoltura", envolturas.items())
     # print("envoltura", envoltura)
 
-    envoltura = list(envolturas.items())[0]
+    envoltura = list(envolturas.items())[1]
     # for envoltura in envolturas.items():
     print("envoltura", envoltura)
-    result = juntar_variantes_E(envoltura, variantes)
-    """ variantes_2 = result
-
-    envoltura_2 = list(envolturas.items())[1]
-    result_2 = juntar_variantes_E(envoltura_2, variantes_2) """
-
+    result = juntar_variantes_E_2(envoltura)
+    
     return result
+
+
+def juntar_variantes_E_2(envoltura):
+
+    todos = []
+    local = envoltura[0]
+    for local_env in envoltura[1]:
+        variantes = ejecutar_E()
+        print(local_env)
+        i = 0
+        print("longitud", len(variantes))
+        while i < len(variantes):
+
+            print("iteracion", i)
+
+            # variantes_aux = variantes
+            # variante = variantes_aux[i]
+            
+            # variantes = juntar_variantes()
+            variante = variantes[i]
+            print("--- ESTA ES LA VARIANTE QUE COJO ----\n", variante)
+            trazado = generador_E_1(local_env, local, variante)
+            i += 1
+            todos.append(trazado)
+    
+    return todos
 
 # generador_E_1()
 # juntar_variantes_E()
-ejecutar_E()
+# ejecutar_E()
+ejecutar_E_2()

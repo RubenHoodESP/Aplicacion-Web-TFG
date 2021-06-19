@@ -7,8 +7,8 @@ import Generador
 
 def dibujar():
 
-    variantes = Generador.juntar_variantes()
-    diccionario = [Trazador.trazar_A(), Trazador.trazar_B(), Generador.generador_D_5(Trazador.trazar_D())]
+    variantes = Generador.ejecutar_E()
+    diccionario = [Trazador.trazar_A(), Trazador.trazar_B(), Generador.generador_D_5()]
     figure = 0
     for variante in variantes:
         diccionario[2] = variante
@@ -42,7 +42,7 @@ def dibujar():
 
 def dibujar_final():
 
-    variantes = Generador.ejecutar_E()
+    variantes = Generador.ejecutar_E_2()
     diccionario = [Trazador.trazar_A(), Trazador.trazar_B(), Generador.generador_D_5()]
     figure = 0
     for variante in variantes:
@@ -75,7 +75,6 @@ def dibujar_final():
 
 
 # dibujar()
-
 dibujar_final()
 
 

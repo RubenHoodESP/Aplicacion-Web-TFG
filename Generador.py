@@ -3,7 +3,7 @@ import Reparador
 from types import MappingProxyType
 import Analizador
 import Trazador
-import Variantes
+import copy
 
 def comparador_envolturas():
     
@@ -215,7 +215,7 @@ def generador_E_1(local, envoltura, variante):
 
     print("envoltura", envoltura)
 
-    trazos_finales = variante
+    trazos_finales = copy.deepcopy(variante)
     trazado_nuevo = [0,0,0,0,0,0,0,0]
     trazado_adyacente = variante[int(local)]
     resultado = {}
@@ -315,7 +315,7 @@ def generador_E_1(local, envoltura, variante):
             return trazos_finales
 
 
-def juntar_variantes_E(envoltura):
+def juntar_variantes_E(envoltura, variantes_aux):
 
     todos = []
     resultado_final = []
@@ -323,15 +323,17 @@ def juntar_variantes_E(envoltura):
     for local_env in envoltura[1]:
         print(local_env)
         i = 0
-        print("longitud", len(juntar_variantes()))
-        while i < len(juntar_variantes()):
+        variantes = copy.deepcopy(variantes_aux)
+        print("longitud", len(variantes))
+        print(local_env, local, variantes)
+
+        while i < len(variantes):
 
             print("iteracion", i)
 
             # variantes_aux = variantes
             # variante = variantes_aux[i]
             
-            variantes = juntar_variantes()
             variante = variantes[i]
             trazado = generador_E_1(local_env, local, variante)
             i += 1
@@ -342,12 +344,15 @@ def juntar_variantes_E(envoltura):
 
 def ejecutar_E():
     envolturas = Trazador.tratar_envoltura_E()
+    variantes = juntar_variantes()
     result = []
-    envoltura = list(envolturas.items())[0]
-    # for envoltura in envolturas.items():
-    # print("envoltura", envoltura)
-    result = juntar_variantes_E(envoltura)
-  
+    # envoltura = list(envolturas.items())[0]
+    for envoltura in envolturas.items():
+        # print("envoltura", envoltura)
+        result_aux = juntar_variantes_E(envoltura, variantes)
+        variantes = result_aux
+        result = result_aux
+     
     return result
 
 
@@ -394,5 +399,5 @@ def juntar_variantes_E_2(envoltura):
 
 # generador_E_1()
 # juntar_variantes_E()
-# ejecutar_E()
-ejecutar_E_2()
+print(len(ejecutar_E()))
+# ejecutar_E_2()

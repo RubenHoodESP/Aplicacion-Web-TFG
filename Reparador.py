@@ -99,8 +99,6 @@ def reparar_0(trazados):
                 else:
                     resultado[local_4] = coordenadas_4
 
-    
-
     return resultado
 
 # print(reparar_0(Trazador.juntar_locales()))

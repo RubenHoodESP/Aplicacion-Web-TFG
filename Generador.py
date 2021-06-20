@@ -399,5 +399,5 @@ def juntar_variantes_E_2(envoltura):
 
 # generador_E_1()
 # juntar_variantes_E()
-print(len(ejecutar_E()))
+# print(len(ejecutar_E()))
 # ejecutar_E_2()

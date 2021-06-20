@@ -3,7 +3,7 @@ from csv import reader
 
 # Función que lee una tabla de datos de un fichero CSV
 def lectura_datos_csv():
-    with open('datos.csv', 'r') as csv_file:
+    with open('datos/datos.csv', 'r') as csv_file:
         csv_reader = reader(csv_file)
         next(csv_reader)
         tabla = list(csv_reader)
@@ -13,7 +13,7 @@ def lectura_datos_csv():
 
 # Función que lee una tabla de datos de un fichero CSV
 def lectura_planta_csv():
-    with open('planta.csv', 'r') as csv_file:
+    with open('datos/planta.csv', 'r') as csv_file:
         csv_reader = reader(csv_file)
         next(csv_reader)
         tabla = list(csv_reader)
@@ -166,5 +166,35 @@ def getTipoLocal(local):
     elif ((len(envoltura) == 1) and ('0' in envoltura)):
         return "E"
 
-# print(datosLocalesInteriores())
-# print(datosLocal('1'))
+
+def checkLocalesD():
+    tabla = lectura_datos_csv()
+    for fila in tabla:
+        lados = fila[1]
+        if len(lados) == 1:
+            return True
+
+    return False
+
+
+def checkLocalesE():
+    tabla = lectura_datos_csv()
+    for fila in tabla:
+        lados = fila[1]
+        if ((len(lados) == 1) and ('0' in lados)):
+            return True
+
+    return False
+
+def get_max_x():
+    aux = lectura_planta_csv()
+    result = aux[0]
+    return result[0]
+
+def get_max_y():
+    aux = lectura_planta_csv()
+    result = aux[0]
+    return result[1]
+
+print(get_max_x())
+print(get_max_y())

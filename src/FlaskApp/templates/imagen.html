@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <header class="salida">
+        <a href="/borrar"><button class="salir">BORRAR</button></a>
+    </header>
+    <header class="header">
+        <h1>MUESTRA DE IMÁGENES</h1>
+    </header>
+    <main class="contenido">
+        <h3>VARIANTES</h3>
+        {% for imagen in imagenes %}
+            <div class="imagen">
+                <img src="{{url_for('static', filename=imagen)}}" alt="{{imagen}}" id="image">
+            </div>
+        {% endfor %}
+    </main>
+    <footer class="footer">
+        <h3></h3>
+    </footer>
+</div>
+
+{% endblock %}

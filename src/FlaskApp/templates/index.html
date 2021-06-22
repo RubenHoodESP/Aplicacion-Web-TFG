@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <header class="salida">
+        <a href="/"><button class="salir">SALIR</button></a>
+    </header>
+    <header class="header">
+        <h1>INICIO</h1>
+    </header>
+    <main class="contenido">
+        <h3>Selecciona el archivo CSV con los datos de entrada:</h3>
+        <form action="http://localhost:5050/subido" method="POST" enctype = "multipart/form-data">
+            <label for="myfile">Selecciona los ficheros datos.csv y planta.csv:</label>
+            <input type="file" name="file[]" multiple=""><br><br>
+            <input type="submit" value="Subir">
+        </form>
+    </main>
+    <footer class="footer">
+        <h3></h3>
+    </footer>
+</div>
+{% endblock %}
